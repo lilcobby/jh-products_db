@@ -12,14 +12,14 @@ Product.belongsTo(Category, {
   foreignKey: "category_id",
 });
 Product.belongsToMany(Tag, {
-  through: "Product_tag",
+  through: ProductTag,
   foreignKey: "product_id",
 });
 Category.hasMany(Product, {
   foreignKey: "category_id",
 });
 Tag.belongsToMany(Product, {
-  through: "Product_tag",
+  through: ProductTag,
   foreignKey: "tag_id",
 });
 
