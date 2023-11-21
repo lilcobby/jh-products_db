@@ -81,7 +81,8 @@ router.put("/:id", (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
-      id: req.params.id,
+      // update id to product id
+      product_id: req.params.id,
     },
   })
     .then((product) => {
@@ -112,7 +113,9 @@ router.put("/:id", (req, res) => {
         });
       }
 
-      return res.json(product);
+      return res.status(200).json({
+        message: `number of entries changed, ${product}, run a GET request  to ../products/${req.params.id} to see changes`,
+      });
     })
     .catch((err) => {
       // console.log(err);

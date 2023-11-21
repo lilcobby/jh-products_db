@@ -72,6 +72,8 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   // delete a category by its `id` value
   try {
+    // need to destroy associations in products table or error trips.
+    await Product.destroy({ where: { category_id: req.params.id } });
     const deleteCat = await Category.destroy({
       where: { category_id: req.params.id },
     });
